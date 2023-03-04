@@ -8,17 +8,18 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://supercoder123.github.io/',
+  baseUrl: '/react-otp-input-docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  trailingSlash: true,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
-
+  organizationName: 'supercoder123', // Usually your GitHub org/user name.
+  projectName: 'react-otp-inptut-hook', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
@@ -55,7 +56,7 @@ const config = {
         title: 'React OTP input hook',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/lib-logo.svg',
+          src: '../img/lib-logo.svg',
         },
         items: [
           {
