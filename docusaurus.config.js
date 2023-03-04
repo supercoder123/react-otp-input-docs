@@ -12,7 +12,7 @@ const config = {
   baseUrl: '/react-otp-input-docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/lib-logo.svg',
   trailingSlash: true,
 
   // GitHub pages deployment config.
@@ -56,7 +56,7 @@ const config = {
         title: 'React OTP input hook',
         logo: {
           alt: 'My Site Logo',
-          src: '../img/lib-logo.svg',
+          src: 'img/lib-logo.svg',
         },
         items: [
           {
