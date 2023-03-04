@@ -1,0 +1,67 @@
+---
+sidebar_position: 2
+title: "API"
+---
+
+```jsx
+const { 
+  register, 
+  setValue, 
+  setDisabled, 
+  clear, 
+  value, 
+  inputs, 
+  error, 
+  setError 
+} = useOtpInput<T>(options); // T can be HTMLTextAreaElement or HTMLInputElement;
+```
+
+### Options
+
+| Name  | Values | Type | Default  | Description  |
+|-------|---|---|---|---|
+| type  |  "numeric", "alphanumeric", "password", "password-numeric" | string  |"alphanumeric"   | Defines the type of the otp input  |   
+| onInputValueChange | (value) => {}  |  (val: string) => void  | ...  |  Change listener to listen to the latest value |   
+| blankAllowed | true , false  | boolean |  false  |  Spacebar will be allowed if set to true |  
+| focusOnLoad | true , false  | boolean |  false  |  Focuses the first input on load |  
+| defaultInlineStyles | ... | CSSProperties |  {}  |  any css style object |   
+| cycle | true, false  | boolean |  false  |  Will cycle back to first input if key is pressed on the last input |   
+| placeholder | ...  | string |  ''  |  Placeholder value for every input |   
+| numberOfInputs | ...  | number |  undefined  |  Need to provide this option in order to use the dynaic inputs return value  |   
+| autoCompleteAttribute | "on" , "off"  | string |  "off"  |  Adds the autocomplete attribute |   
+
+
+#### Types
+```
+interface InputOptions {
+  required?: boolean;
+  maxLength?: number;
+}
+
+type RegisterReturn<T> =  {
+    autoComplete: string;
+    "aria-label": string;
+    name: string;
+    onKeyDown: (e: React.KeyboardEvent<T>) => void;
+    onInput: (e: React.FormEvent<T>) => void;
+    onKeyUp: (e: React.KeyboardEvent<T>) => void;
+    onFocus: (e: React.FocusEvent<T>) => void;
+    ref: (fieldRef: T) => void;
+    style: React.CSSProperties | undefined;
+    placeholder: string;
+    onPaste: (e: ClipboardEvent<T>) => void;
+}
+
+```
+
+### Returned values
+| Name  | Type | Description  |
+|-------|---|---|
+|register |`(name: string, options?: InputOptions) => RegisterReturn<T>` | Used to register an input, can be provided maxLength and required as props |
+|setValue| (val: string \| number) => void | Used to set the value for all inputs |
+|setDisabled|  (disabled: boolean) => void |  Disables all the inputs |
+|clear| () => void | Clears all inputs |
+|value| string \| number | Provides the value of the otp input |
+|inputs| `RegisterReturn<T>[]` | Returns the inputs based on the value provided in numberOfInputs. Can be used to set the inputs in a loop instead of registering it one by one |
+|error| string | Get an error string|
+|setError| `React.Dispatch<React.SetStateAction<string>>` | Set an error string|

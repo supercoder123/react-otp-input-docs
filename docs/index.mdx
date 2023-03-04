@@ -1,0 +1,168 @@
+---
+sidebar_position: 1
+title: "React otp input hook "
+---
+
+import { BasicOTPComponent } from '../src/components/BasicOtpInput';
+import { BasicOTPComponentLoop } from '../src/components/BasicOtpInputLoop';
+import { OutputWrapper } from '../src/components/OutputWrapper';
+import { OTPForm } from '../src/components/OTPForm';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<div align="center">
+  <img width="300" src="img/lib-logo.svg" alt="React OTP Input Hook" /> 
+
+ 
+  [![npm](https://img.shields.io/npm/v/react-otp-input-hook)](https://www.npmjs.com/package/react-otp-input-hook)
+  [![npm](https://img.shields.io/npm/dm/react-otp-input-hook)](https://www.npmjs.com/package/react-otp-input-hook)
+  [![NPM](https://img.shields.io/npm/l/react-otp-input-hook)](https://github.com/supercoder123/react-otp-input-hook/blob/main/LICENSE.md)
+  [![Coverage Status](https://coveralls.io/repos/github/supercoder123/react-otp-input-hook/badge.svg?branch=main)](https://coveralls.io/github/supercoder123/react-otp-input-hook?branch=main)
+  [![Build Status](https://app.travis-ci.com/supercoder123/react-otp-input-hook.svg?branch=main)](https://app.travis-ci.com/supercoder123/react-otp-input-hook)
+
+</div> 
+
+
+A simple react hook to create otp inputs with ease. Inspired by libraries like react-hook-form, downshift-js ...etc
+
+### Features
+- No dependencies (only needs react as peer dependency)
+- Small size
+- Easy to use
+- Does not come with any styling so you are free to use any input component of your own. (refs need to be forwarded)
+- Written in typescript
+- Lots of options
+- Works with many libraries
+
+
+### Installation
+```bash
+npm install react-otp-input-hook
+```
+
+### Basic Usage
+
+```jsx
+
+import React  from "react";
+import { useOtpInput } from "react-otp-input-hook";
+
+export default App = () => {
+  const { register } = useOtpInput({
+    onInputValueChange: (value) => {
+      console.log(value)
+    },
+    defaultInlineStyles: {
+        height: '40px',
+        width: '40px',
+        margin: '0 5px',
+        textAlign: 'center',
+        fontSize: '20px'
+    },
+    placeholder: '-'
+  });
+
+  const defaultOptions = { required: true };
+
+  return (
+    <div>
+      <input {...register("digit-1", defaultOptions)} />
+      <input {...register("digit-2", defaultOptions)} />
+      <input {...register("digit-3", defaultOptions)} />
+      <input {...register("digit-4", defaultOptions)} />
+      <input {...register("digit-5", defaultOptions)} />
+    </div>
+  );
+};
+```
+
+#### Output
+<OutputWrapper>
+  <BasicOTPComponent />
+</OutputWrapper>
+
+
+
+### Basic version with loop
+
+```jsx
+import React  from "react";
+import { useOtpInput } from "react-otp-input-hook";
+
+export default App = () => {
+  const { inputs } = useOtpInput({
+    numberOfInputs: 5,   // do not forget this
+    onInputValueChange: (value) => {
+      console.log(value)
+    },
+    defaultInlineStyles: {
+        height: '40px',
+        width: '40px',
+        margin: '0 5px',
+        textAlign: 'center',
+        fontSize: '20px'
+    },
+    placeholder: '-'
+  });
+
+  return (
+    <div>
+      {inputs.map((input, i) => {
+        return <input required key={i} {...input} />;
+      })}
+    </div>
+  );
+};
+
+```
+
+#### Output
+<OutputWrapper>
+  <BasicOTPComponentLoop />
+</OutputWrapper>
+
+
+
+### Use it inside any form
+
+```jsx
+import React from "react";
+import { useOtpInput } from "react-otp-input-hook";
+import "./styles.css";
+
+export const OTPForm = () => {
+  const { register, value, inputs } = useOtpInput({
+    placeholder: "-",
+    numberOfInputs: 5,
+  });
+  
+
+  return (
+    <div>
+      <form
+        className="basic-otp-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          alert(value);
+        }}
+      >
+        <div className="otp">
+          {inputs.map((input, i) => {
+            return <input required maxLength={3} key={i} {...input} />;
+          })}
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <div>Value: {value}</div>
+    </div>
+  );
+};
+```
+
+#### Output
+<OutputWrapper>
+  <OTPForm />
+</OutputWrapper>
