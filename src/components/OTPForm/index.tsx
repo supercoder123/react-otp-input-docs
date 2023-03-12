@@ -20,7 +20,7 @@ export const OTPForm = () => {
       >
         <div className="otp">
           {inputs.map((input, i) => {
-            return <input required maxLength={3} key={i} {...input} />;
+            return <input required key={i} {...input} />;
           })}
         </div>
 
